@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sruthi K R — Product Manager</title>
+<meta name="description" content="Product manager portfolio: Amazon Now launch (US, UK, Germany) and AI GRC platform enablement at UNO.ai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a14; --surface:#15121f; --surface-2:#1c1829;
+    --purple:#7c3aed; --pink:#ec4899; --orange:#fb923c;
+    --text:#f5f3fa; --muted:#a8a3b8; --line:#2a2438;
+    --grad:linear-gradient(115deg,var(--purple) 0%,var(--pink) 55%,var(--orange) 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Unbounded',sans-serif;line-height:1.15;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;backdrop-filter:blur(10px);background:rgba(11,10,20,.6);border-bottom:1px solid rgba(255,255,255,.06);}
+  .nav-mark{font-family:'Unbounded',sans-serif;font-weight:700;font-size:18px;}
+  .nav-mark span,.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .nav-links{display:flex;gap:26px;font-size:14px;color:var(--muted);}
+  .nav-links a:hover{color:var(--text);}
+  @media(max-width:700px){.nav-links{display:none;}}
+
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:80px;overflow:hidden;}
+  #particle-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+  .hero-glow{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 15% 25%,rgba(124,58,237,.35),transparent 45%),radial-gradient(circle at 85% 70%,rgba(251,146,60,.25),transparent 50%);}
+  .hero-content{position:relative;z-index:2;width:100%;}
+  .eyebrow-role{font-size:15px;color:var(--muted);margin-bottom:18px;}
+  .hero h1{font-size:clamp(36px,6.4vw,76px);font-weight:700;margin-bottom:22px;max-width:920px;}
+  .hero p.lede{font-size:19px;color:var(--muted);max-width:600px;margin-bottom:34px;}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;padding:14px 26px;border-radius:100px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .25s ease,box-shadow .25s ease;}
+  .btn-primary{background:var(--grad);color:#0b0a14;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(236,72,153,.5);}
+  .btn-ghost{border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--pink);}
+  .hero-stats{display:flex;gap:44px;margin-top:60px;flex-wrap:wrap;}
+  .stat-num{font-family:'Unbounded',sans-serif;font-size:30px;font-weight:700;}
+  .stat-label{font-size:13px;color:var(--muted);margin-top:4px;max-width:160px;}
+
+  section{padding:100px 0;}
+  .section-head{margin-bottom:48px;max-width:680px;}
+  .section-tag{font-size:14px;color:var(--pink);font-weight:600;margin-bottom:12px;}
+  .section-head h2{font-size:clamp(26px,4vw,40px);font-weight:700;}
+
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:var(--muted);font-size:17px;margin-bottom:18px;max-width:60ch;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;}
+  .card h3{font-size:16px;margin-bottom:16px;}
+  .facts{list-style:none;}
+  .facts li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted);}
+  .facts li:last-child{border-bottom:none;}
+  .facts li span:last-child{color:var(--text);font-weight:500;text-align:right;overflow-wrap:anywhere;}
+
+  /* case studies */
+  .case{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px;margin-bottom:28px;position:relative;overflow:hidden;}
+  .case::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--grad);}
+  .case-meta{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:8px;font-family:'Unbounded',sans-serif;}
+  .case h3{font-size:clamp(22px,3vw,30px);margin-bottom:12px;}
+  .case .summary{color:var(--muted);font-size:17px;max-width:68ch;margin-bottom:28px;}
+  .award{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:100px;border:1px solid var(--orange);color:var(--orange);font-weight:600;font-size:14px;margin-bottom:26px;}
+  .case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:28px;}
+  .case-grid h4{font-size:14px;color:var(--pink);margin-bottom:10px;}
+  .case-grid ul{padding-left:18px;color:var(--muted);font-size:15px;}
+  .case-grid li{margin-bottom:8px;}
+  .case-grid li::marker{color:var(--pink);}
+  .kpi-title{font-size:14px;color:var(--pink);font-weight:600;margin-bottom:12px;}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+  .kpi{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px;}
+  .kpi b{display:block;font-size:15px;margin-bottom:4px;}
+  .kpi span{font-size:13px;color:var(--muted);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+  .chip{font-size:13px;padding:6px 12px;border-radius:100px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line);}
+
+  /* timeline */
+  .timeline{position:relative;padding-left:36px;}
+  .timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--purple),var(--pink),var(--orange));opacity:.5;}
+  .tl-item{position:relative;padding-bottom:52px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{position:absolute;left:-36px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 5px var(--bg),0 0 0 6px var(--line);}
+  .tl-date{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:6px;font-family:'Unbounded',sans-serif;}
+  .tl-role{font-size:21px;font-weight:700;}
+  .tl-org{font-size:15px;color:var(--muted);margin-bottom:14px;}
+  .tl-org b{color:var(--pink);font-weight:600;}
+  .tl-item ul{padding-left:20px;color:var(--muted);font-size:15px;}
+  .tl-item li{margin-bottom:8px;}
+  .tl-item li::marker{color:var(--pink);}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;}
+  .skill-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;}
+  .skill-card h3{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+
+  .contact{text-align:center;}
+  .contact h2{font-size:clamp(28px,5vw,48px);margin-bottom:20px;}
+  .contact p{color:var(--muted);font-size:17px;max-width:520px;margin:0 auto 34px;}
+  .contact-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+  footer{text-align:center;padding:32px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  @media(max-width:600px){.case{padding:26px 22px;}.wrap{padding:0 22px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">Sruthi <span>K R</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Product work</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="hero-glow"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow-role">Product Manager · Product Analytics · AI Platforms</div>
+    <h1>I launch <span class="grad">products</span> and turn customer needs into <span class="grad">roadmaps</span>.</h1>
+    <p class="lede">I helped launch Amazon Now across the US, UK and Germany, and now I'm helping enterprises adopt UNO.ai's AI platform for governance, risk and compliance (GRC) faster.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See my product work</a>
+      <a href="mailto:sruthikrwork@gmail.com" class="btn btn-ghost">Get in touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3</div><div class="stat-label">Amazon Now marketplaces: US, UK, Germany</div></div>
+      <div><div class="stat-num">4.5+</div><div class="stat-label">years in enterprise SaaS and product analytics</div></div>
+      <div><div class="stat-num">45%</div><div class="stat-label">faster decision-making through dashboards (DRDO project)</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <div class="section-tag">About</div>
+      <h2 style="margin-bottom:20px;">From customer problem to shipped feature.</h2>
+      <p>I'm a product-focused professional with a computer science background. I start with what customers and operators struggle with, turn it into clear requirements, and use data to decide what ships first.</p>
+      <p>My work spans launch readiness at Amazon Now, cybersecurity workflows for a DRDO project, and AI-enabled GRC at UNO.ai. In each, I worked across product, engineering, sales and operations to get from discovery to a measurable result.</p>
+    </div>
+    <div class="card">
+      <h3>Quick facts</h3>
+      <ul class="facts">
+        <li><span>Based in</span><span>Bangalore, India</span></li>
+        <li><span>Currently</span><span>Product Enablement Lead, UNO.ai</span></li>
+        <li><span>Email</span><span>sruthikrwork@gmail.com</span></li>
+        <li><span>LinkedIn</span><span><a href="https://www.linkedin.com/in/sruthi-r-7658581b2/" target="_blank" rel="noopener">sruthi-r-7658581b2</a></span></li>
+        <li><span>Degree</span><span>B.E. Computer Science, Anna University (GPA 8.2)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:linear-gradient(180deg,transparent,rgba(124,58,237,.06),transparent);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Product work</div>
+      <h2>Two products, two launches, one approach: define the KPI, then move it.</h2>
+    </div>
+
+    <article class="case">
+      <div class="case-meta">Amazon · Apr 2025 – Jun 2026</div>
+      <h3>Amazon Now: launch readiness in the US, UK and Germany</h3>
+      <div class="award" role="note">🏆 Milestone Achiever Award, Amazon Now launch</div>
+      <p class="summary">Amazon Now is a fast-delivery experience launched across three marketplaces. I owned operational feature validation and product analytics so each launch milestone was met with reliable pricing, availability and data.</p>
+      <div class="case-grid">
+        <div>
+          <h4>Problem</h4>
+          <ul>
+            <li>Each marketplace had its own pricing, mapping, crawling and audit workflows to get launch-ready.</li>
+            <li>Teams needed one shared view of what was ready and what was blocking launch.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li>Turned requirements across pricing, mapping, crawling and audit into technical requirements and work items.</li>
+            <li>Validated features and coordinated product, engineering and operations stakeholders through launch.</li>
+            <li>Built an analytics pipeline with automated daily insights on pricing, availability and category performance.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outcome</h4>
+          <ul>
+            <li>Met launch milestones in the US, UK and Germany and received the Milestone Achiever Award.</li>
+            <li>Gave teams data to prioritise fixes and resolve issues faster.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kpi-title">KPIs I defined and tracked for the launch</div>
+      <div class="kpis">
+        <div class="kpi"><b>Pricing accuracy</b><span>Are prices correct and competitive per marketplace?</span></div>
+        <div class="kpi"><b>Availability</b><span>Is the right selection in stock for fast delivery?</span></div>
+        <div class="kpi"><b>Data quality</b><span>Are mapping and crawled data complete and correct?</span></div>
+        <div class="kpi"><b>Category performance</b><span>Which categories drive the launch?</span></div>
+        <div class="kpi"><b>Operational performance</b><span>Are audit and ops workflows running on time?</span></div>
+        <div class="kpi"><b>Launch readiness</b><span>Milestones validated vs. planned, by marketplace</span></div>
+      </div>
+      <div class="tags">
+        <span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Excel</span><span class="chip">Amazon QuickSight</span><span class="chip">Redshift</span><span class="chip">Release readiness</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">UNO.ai · Jul 2026 – Present</div>
+      <h3>Making an AI GRC platform faster to adopt</h3>
+      <p class="summary">UNO.ai is an AI platform for governance, risk and compliance. As Product Enablement Lead, I help enterprises get from onboarding to real use sooner, and bring what they tell us back into the product.</p>
+      <div class="case-grid">
+        <div>
+          <h4>Problem</h4>
+          <ul>
+            <li>GRC work is slow and manual, and adoption stalls on workflow fit and unclear value.</li>
+            <li>Customer feedback was scattered and hard for product to act on.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>What I do</h4>
+          <ul>
+            <li>Capture enterprise voice of customer, workflows, pain points and adoption barriers.</li>
+            <li>Convert feedback into structured product enhancement requests and requirements.</li>
+            <li>Work with Product, Engineering, Sales and Customer Success to reproduce issues and validate features.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Goal</h4>
+          <ul>
+            <li>Help teams run GRC faster with AI: quicker onboarding and quicker adoption of key features.</li>
+            <li>Shorten the loop from customer pain point to shipped improvement.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kpi-title">How I measure it</div>
+      <div class="kpis">
+        <div class="kpi"><b>Onboarding speed</b><span>Time from signup to first value</span></div>
+        <div class="kpi"><b>Feature adoption</b><span>Which GRC features customers actually use</span></div>
+        <div class="kpi"><b>Workflow efficiency</b><span>Time to complete a compliance workflow</span></div>
+        <div class="kpi"><b>Feedback to roadmap</b><span>Requests captured, scoped and shipped</span></div>
+      </div>
+      <div class="tags">
+        <span class="chip">Voice of Customer</span><span class="chip">Requirements</span><span class="chip">AI platforms</span><span class="chip">GRC</span><span class="chip">Adoption metrics</span>
+      </div>
+    </article>
+
+    <article class="case" style="margin-bottom:0;">
+      <div class="case-meta">Amantya Technologies · Feb 2023 – Mar 2025</div>
+      <h3>DRDO cybersecurity project: aligning product and engineering</h3>
+      <p class="summary">I worked with the DRDO Product Manager to turn product expectations into technical implementation, and made progress visible with dashboards.</p>
+      <div class="case-grid">
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li>Ran competitor and gap analysis and helped define workflows.</li>
+            <li>Supported backlog refinement and sprint planning in Jira and Confluence.</li>
+            <li>Built reporting dashboards and success metrics for project visibility.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Reported results</h4>
+          <ul>
+            <li>25% workflow improvement.</li>
+            <li>45% faster decision-making.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Experience</div>
+      <h2>Career timeline</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Jul 2026 — Present</div>
+        <div class="tl-role">Product Enablement Lead, AI GRC</div>
+        <div class="tl-org"><b>UNO.ai</b></div>
+        <ul>
+          <li>Capture enterprise voice of customer, user workflows, pain points and adoption barriers, and turn them into structured product enhancement requests and requirements.</li>
+          <li>Collaborate with Product, Engineering, Sales and Customer Success to clarify use cases, reproduce issues, validate features and communicate customer needs.</li>
+          <li>Track onboarding and feature adoption on the AI-enabled GRC platform.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Apr 2025 — Jun 2026</div>
+        <div class="tl-role">Product Engineer II, Amazon Now</div>
+        <div class="tl-org"><b>Amazon</b> · Milestone Achiever Award</div>
+        <ul>
+          <li>Supported launch readiness and operational feature validation across the US, UK and Germany marketplaces, working with product, engineering and operations.</li>
+          <li>Analysed requirements across pricing, mapping, crawling and audit workflows and translated them into technical requirements, process updates and work items.</li>
+          <li>Used SQL, Python, Excel and Amazon QuickSight to build KPI dashboards on pricing, availability, data quality and operational performance, enabling data-informed prioritisation.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Feb 2023 — Mar 2025</div>
+        <div class="tl-role">Software Engineer, DRDO Cybersecurity Project</div>
+        <div class="tl-org"><b>Amantya Technologies</b></div>
+        <ul>
+          <li>Worked with the DRDO Product Manager to clarify requirements and align product expectations with technical implementation.</li>
+          <li>Ran competitor and gap analysis; supported workflow definition, backlog refinement and sprint planning with Jira and Confluence (25% workflow improvement reported).</li>
+          <li>Developed dashboards and success metrics for project visibility (45% faster decision-making reported).</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Jul 2022 — Jan 2023</div>
+        <div class="tl-role">Programmer Analyst, Enterprise Product Analytics</div>
+        <div class="tl-org"><b>Cognizant Technology Solutions</b></div>
+        <ul>
+          <li>Created SQL-based reports and dashboards to monitor business KPIs, spot operational trends and inform stakeholder decisions.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:linear-gradient(180deg,transparent,rgba(236,72,153,.05),transparent);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Skills</div>
+      <h2>The product toolkit</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><span class="dot" style="background:var(--pink)"></span>Product management</h3>
+        <div class="chip-row">
+          <span class="chip">Product discovery</span><span class="chip">Voice of Customer</span><span class="chip">Requirements</span><span class="chip">PRDs</span><span class="chip">User stories</span><span class="chip">Acceptance criteria</span><span class="chip">Prioritisation</span><span class="chip">Roadmap support</span><span class="chip">Feature validation</span><span class="chip">Release readiness</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="dot" style="background:var(--purple)"></span>Product analytics</h3>
+        <div class="chip-row">
+          <span class="chip">KPI definition</span><span class="chip">Adoption metrics</span><span class="chip">Funnel and workflow analysis</span><span class="chip">Dashboarding</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Excel</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="dot" style="background:var(--orange)"></span>Research and delivery</h3>
+        <div class="chip-row">
+          <span class="chip">Market research</span><span class="chip">Competitor analysis</span><span class="chip">Gap analysis</span><span class="chip">Customer feedback</span><span class="chip">Agile / Scrum</span><span class="chip">Sprint planning</span><span class="chip">Backlog refinement</span><span class="chip">Jira</span><span class="chip">Confluence</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="dot" style="background:var(--pink)"></span>Technical</h3>
+        <div class="chip-row">
+          <span class="chip">Amazon QuickSight</span><span class="chip">AWS</span><span class="chip">Amazon Redshift</span><span class="chip">Power BI</span><span class="chip">APIs</span><span class="chip">Data pipelines</span><span class="chip">Enterprise SaaS</span><span class="chip">AI platforms</span><span class="chip">Cybersecurity</span><span class="chip">GRC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's talk product.</h2>
+    <p>I'm open to product manager roles in enterprise SaaS, AI platforms and marketplace products.</p>
+    <div class="contact-links">
+      <a href="mailto:sruthikrwork@gmail.com" class="btn btn-primary">sruthikrwork@gmail.com</a>
+      <a href="https://www.linkedin.com/in/sruthi-r-7658581b2/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Sruthi K R</footer>
+
+<script>
+const canvas=document.getElementById('particle-canvas');
+const ctx=canvas.getContext('2d');
+let w,h,particles=[],mouse={x:null,y:null};
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const colors=['#7c3aed','#ec4899','#fb923c'];
+function make(){
+  w=canvas.width=canvas.offsetWidth;h=canvas.height=canvas.offsetHeight;
+  const n=Math.min(90,Math.floor((w*h)/16000));
+  particles=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1,c:colors[Math.floor(Math.random()*3)]}));
+}
+window.addEventListener('resize',make);make();
+canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
+canvas.addEventListener('mouseleave',()=>{mouse.x=null;mouse.y=null;});
+function step(){
+  ctx.clearRect(0,0,w,h);
+  for(const p of particles){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>w)p.vx*=-1;
+    if(p.y<0||p.y>h)p.vy*=-1;
+    if(mouse.x!==null){
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy);
+      if(d<140&&d>0){const f=(140-d)/140;p.x+=dx/d*f*1.6;p.y+=dy/d*f*1.6;}
+    }
+  }
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+    const a=particles[i],b=particles[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(d<120){ctx.strokeStyle=`rgba(168,163,184,${.14*(1-d/120)})`;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+  }
+  for(const p of particles){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c;ctx.fill();}
+  if(!reduce)requestAnimationFrame(step);
+}
+step();
+</script>
+</body>
+</html>
